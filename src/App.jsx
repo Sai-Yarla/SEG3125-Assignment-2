@@ -49,12 +49,18 @@ function HomeView({ setView, setArtist }) {
         <h2 className="display-title">Your story, <i>natural</i> form.</h2>
         <p className="subtitle">Botanical and fine-line tattooing in a sophisticated, calm environment.</p>
         <div className="hero-buttons">
-          <button className="btn-secondary" onClick={() => { document.getElementById('artists')?.scrollIntoView({ behavior: 'smooth' }); }}>
-            First Time? Book Consultation
-          </button>
-          <button className="btn-primary" onClick={() => { document.getElementById('artists')?.scrollIntoView({ behavior: 'smooth' }); }}>
-            Veterans: Reserve Session
-          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+            <button className="btn-secondary" onClick={() => { setArtist('Mia'); setView('CONSULTATION'); window.scrollTo(0, 0); }}>
+              First Time? Book Consultation
+            </button>
+            <span style={{ fontSize: '0.85rem', opacity: 0.8, color: 'var(--text-main)', fontStyle: 'italic' }}>with Mia, our newcomer specialist</span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+            <button className="btn-primary" onClick={() => { setArtist('Jax'); setView('SESSION'); window.scrollTo(0, 0); }}>
+              Veterans: Reserve Session
+            </button>
+            <span style={{ fontSize: '0.85rem', opacity: 0.8, color: 'var(--text-main)', fontStyle: 'italic' }}>with Jax, for routine users & large designs</span>
+          </div>
         </div>
       </div>
 
@@ -64,7 +70,7 @@ function HomeView({ setView, setArtist }) {
           <div className="artist-card">
             <div className="artist-placeholder img-placeholder-1"></div>
             <h4>Mia</h4>
-            <p>Fine-Line & Floral</p>
+            <p>Fine-Line & Floral • Newcomer Specialist</p>
             <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
               <button className="btn-secondary" style={{ padding: '0.8rem 1.5rem', fontSize: '0.8rem' }} onClick={() => { setArtist('Mia'); setView('CONSULTATION'); window.scrollTo(0, 0); }}>Consultation</button>
               <button className="btn-primary" style={{ padding: '0.8rem 1.5rem', fontSize: '0.8rem' }} onClick={() => { setArtist('Mia'); setView('SESSION'); window.scrollTo(0, 0); }}>Reserve Room</button>
@@ -73,7 +79,7 @@ function HomeView({ setView, setArtist }) {
           <div className="artist-card">
             <div className="artist-placeholder img-placeholder-2"></div>
             <h4>Jax</h4>
-            <p>Traditional & Sleeves</p>
+            <p>Traditional & Sleeves • Routine Users & Large Designs</p>
             <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
               <button className="btn-secondary" style={{ padding: '0.8rem 1.5rem', fontSize: '0.8rem' }} onClick={() => { setArtist('Jax'); setView('CONSULTATION'); window.scrollTo(0, 0); }}>Consultation</button>
               <button className="btn-primary" style={{ padding: '0.8rem 1.5rem', fontSize: '0.8rem' }} onClick={() => { setArtist('Jax'); setView('SESSION'); window.scrollTo(0, 0); }}>Reserve Room</button>
