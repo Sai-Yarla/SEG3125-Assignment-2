@@ -10,24 +10,19 @@ function App() {
       <div className="noise-overlay"></div>
 
       <nav className="navbar">
-        <h1 className="logo" onClick={() => { setView('HOME'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Ink & Ease</h1>
+        <h1 className="logo" onClick={() => { setView('HOME'); window.scrollTo(0,0); }}>Ink & Ease</h1>
         <div className="nav-links">
-          <span onClick={() => { setView('STUDIO'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Studio</span>
+          <span onClick={() => { setView('HOME'); window.scrollTo(0,0); }}>Studio</span>
           <span onClick={() => { 
-            if(view !== 'HOME') {
-              setView('HOME');
-              setTimeout(() => document.getElementById('artists')?.scrollIntoView({ behavior: 'smooth' }), 100);
-            } else {
-              document.getElementById('artists')?.scrollIntoView({ behavior: 'smooth' });
-            }
+            setView('HOME'); 
+            setTimeout(() => document.getElementById('artists-section')?.scrollIntoView({behavior: 'smooth'}), 50); 
           }}>Artists</span>
-          <span onClick={() => { setView('CONNECT'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Connect</span>
+          <span onClick={() => { setView('CONNECT'); window.scrollTo(0,0); }}>Connect</span>
         </div>
       </nav>
 
       <main>
         {view === 'HOME' && <HomeView setView={setView} />}
-        {view === 'STUDIO' && <StudioView setView={setView} />}
         {view === 'CONSULTATION' && <ConsultationView setView={setView} />}
         {view === 'SESSION' && <SessionView setView={setView} />}
         {view === 'CONNECT' && <ConnectView setView={setView} />}
@@ -57,7 +52,7 @@ function HomeView({ setView }) {
         </div>
       </div>
 
-      <section id="artists" className="artists-section">
+      <section id="artists-section" className="artists-section">
         <h3 className="section-title">Our Artists</h3>
         <div className="artists-grid">
           <div className="artist-card" onClick={() => setView('CONSULTATION')}>
@@ -218,40 +213,27 @@ function SessionView({ setView }) {
 
 function ConnectView({ setView }) {
   return (
-    <div className="connect-view fade-in form-container" style={{ margin: '4rem auto', maxWidth: '600px' }}>
-      <h2 className="display-title">Let's <i>Connect</i></h2>
-      <p style={{ marginBottom: '2rem', textAlign: 'center' }}>We'd love to hear from you. Visit us at 123 Botanical Way, or drop us a message below.</p>
-      
-      <form className="booking-form" onSubmit={(e) => { e.preventDefault(); alert('Message sent! We will get back to you soon.'); setView('HOME'); }}>
-        <label>Name</label>
-        <input type="text" placeholder="Your Name" required />
+    <div className="fade-in">
+      <div className="form-container" style={{ marginTop: '2rem' }}>
+        <h2 className="section-title" style={{ marginBottom: '1rem' }}>Let's <i>Connect</i></h2>
+        <div style={{ textAlign: 'center', marginBottom: '3rem', opacity: 0.8, lineHeight: 1.8 }}>
+          <p>123 Botanical Way, Ottawa, ON</p>
+          <p>hello@inkandease.com</p>
+          <p>555-019-2837</p>
+        </div>
         
-        <label>Email</label>
-        <input type="email" placeholder="hello@example.com" required />
-        
-        <label>Message</label>
-        <textarea rows="5" placeholder="How can we help you?" required></textarea>
-        
-        <button type="submit" className="btn-primary" style={{ marginTop: '1rem', width: '100%' }}>Send Message</button>
-      </form>
-    </div>
-  );
-}
-
-function StudioView({ setView }) {
-  return (
-    <div className="studio-view fade-in form-container" style={{ margin: '4rem auto', maxWidth: '800px' }}>
-      <h2 className="display-title">Our <i>Studio</i></h2>
-      <p style={{ marginBottom: '1.5rem', fontSize: '1.1rem', lineHeight: '1.6' }}>
-        Welcome to Ink & Ease. We are located at 123 Botanical Way,Ottawa, ON. 
-        Our space is designed to be a serene and welcoming environment, inspired by nature and tranquility, giving you a relaxing space to experience permanent art.
-      </p>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '2.5rem' }}>
-        <div style={{ height: '300px', backgroundColor: 'var(--surface-clay)', borderRadius: '8px' }}></div>
-        <div style={{ height: '300px', backgroundColor: 'var(--surface-light-clay)', borderRadius: '8px' }}></div>
-      </div>
-      <div style={{ clear: 'both', textAlign: 'center', marginTop: '3rem' }}>
-        <button className="btn-secondary" onClick={() => setView('CONSULTATION')}>Book a Studio Tour or Consultation</button>
+        <form className="booking-form" onSubmit={(e) => { e.preventDefault(); alert('Message sent! We will reach out shortly.'); setView('HOME'); }}>
+          <label>Name</label>
+          <input type="text" placeholder="Your Name" required />
+          
+          <label>Email</label>
+          <input type="email" placeholder="hello@example.com" required />
+          
+          <label>Message</label>
+          <textarea rows="5" placeholder="How can we help you?" required></textarea>
+          
+          <button type="submit" className="btn-primary" style={{ marginTop: '1rem', width: '100%' }}>Send Message</button>
+        </form>
       </div>
     </div>
   );
