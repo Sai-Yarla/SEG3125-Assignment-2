@@ -110,7 +110,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Layout & Whitespace */
 main {
   flex-grow: 1;
-  padding: 4rem 5% 8rem 5%;
+  padding: 0 5% 8rem 5%;
   max-width: 1920px; 
   margin: 0 auto;
   width: 100%;
@@ -200,7 +200,12 @@ button {
 /* Home View */
 .hero {
   text-align: center;
-  padding: 6rem 0 8rem 0;
+  padding: 8rem 0 4rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
 }
 
 .hero-buttons {

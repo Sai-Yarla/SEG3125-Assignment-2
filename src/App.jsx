@@ -110,6 +110,29 @@ function FAQItem({ question, answer, defaultOpen = false }) {
 
 function ConsultationView({ setView, artist }) {
   const [step, setStep] = useState(1);
+  const [selectedDate, setSelectedDate] = useState('May 30, 2026');
+  const [selectedTime, setSelectedTime] = useState('');
+
+  const renderCalendarDays = () => {
+    const days = [];
+    const emptyDays = 5; // May 1st 2026 is a Friday
+    for (let i = 0; i < emptyDays; i++) {
+        days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>);
+    }
+    for (let i = 1; i <= 31; i++) {
+        const isSelected = selectedDate === `May ${i}, 2026`;
+        days.push(
+            <div 
+                key={i} 
+                className={`calendar-day ${isSelected ? 'selected' : ''}`}
+                onClick={() => setSelectedDate(`May ${i}, 2026`)}
+            >
+                {i}
+            </div>
+        );
+    }
+    return days;
+  };
 
   return (
     <div className="consultation-view fade-in">
@@ -149,8 +172,33 @@ function ConsultationView({ setView, artist }) {
         <div className="form-container">
           <h2 className="section-title">Reserve a Consultation</h2>
           <form className="booking-form" onSubmit={(e) => { e.preventDefault(); alert('Consultation Requested! We will reach out shortly.'); setView('HOME'); }}>
-            <label>Select Date</label>
-            <input type="date" required />
+            
+            <div className="calendar-ui" style={{ padding: 0, border: 'none', boxShadow: 'none' }}>
+              <div className="calendar-widget">
+                <div className="calendar-header">
+                  <button type="button" className="btn-secondary" style={{padding: '0.5rem 1.5rem'}}>&larr;</button>
+                  <h4>May 2026</h4>
+                  <button type="button" className="btn-secondary" style={{padding: '0.5rem 1.5rem'}}>&rarr;</button>
+                </div>
+                <div className="calendar-grid">
+                  {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
+                    <div key={day} className="calendar-day-header">{day}</div>
+                  ))}
+                  {renderCalendarDays()}
+                </div>
+              </div>
+
+              <div className="time-slots" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+                {['10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'].map(time => (
+                  <button 
+                    key={time}
+                    type="button"
+                    className={`time-tile ${selectedTime === time ? 'active' : ''}`}
+                    onClick={() => setSelectedTime(time)}
+                  >{time}</button>
+                ))}
+              </div>
+            </div>
             
             <label>Meeting Format</label>
             <select required>
@@ -161,7 +209,7 @@ function ConsultationView({ setView, artist }) {
             <label>Share your vision</label>
             <textarea rows="4" placeholder="I'm thinking of a sage leaf on my inner arm..." required></textarea>
             
-            <button type="submit" className="btn-primary" style={{ marginTop: '1rem', width: '100%' }}>Confirm Request</button>
+            <button type="submit" className="btn-primary" disabled={!selectedTime || !selectedDate} style={{ marginTop: '1rem', width: '100%' }}>Confirm Request</button>
           </form>
         </div>
       )}
