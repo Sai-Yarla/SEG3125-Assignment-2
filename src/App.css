@@ -212,6 +212,7 @@ button {
 
 .artists-section {
   padding-top: 4rem;
+  scroll-margin-top: 100px;
 }
 
 /* Staggered Grid & Arches */
@@ -396,30 +397,63 @@ button {
 
 .calendar-ui h3 {
   font-size: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-align: center;
   font-weight: 400;
 }
 
-.calendar-placeholder {
-  display: flex;
-  gap: 1.5rem;
+.calendar-widget {
   margin-bottom: 3rem;
 }
-.calendar-placeholder span {
-  padding: 2rem 1rem;
-  background-color: var(--surface-light-clay);
-  border-radius: 1.5rem;
-  cursor: pointer;
-  flex: 1;
-  text-align: center;
-  transition: all var(--transition-fast);
-  font-weight: 500;
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
-.calendar-placeholder span.selected {
+
+.calendar-header h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.calendar-day-header {
+  text-align: center;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-main);
+  opacity: 0.6;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.calendar-day:not(.empty):hover {
+  background-color: var(--surface-light-clay);
+}
+
+.calendar-day.selected {
   background-color: var(--text-main);
   color: #FFF;
-  transform: translateY(-4px);
   box-shadow: var(--shadow-medium);
 }
 
