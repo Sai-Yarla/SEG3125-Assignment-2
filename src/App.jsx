@@ -91,6 +91,23 @@ function HomeView({ setView, setArtist }) {
   );
 }
 
+function FAQItem({ question, answer, defaultOpen = false }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  return (
+    <div className="faq-item" onClick={() => setIsOpen(!isOpen)}>
+      <div className="faq-summary">
+        {question}
+        <span style={{ transition: 'transform 0.4s ease', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>↓</span>
+      </div>
+      <div className="faq-content" style={{ display: 'grid', gridTemplateRows: isOpen ? '1fr' : '0fr', transition: 'grid-template-rows 0.4s ease' }}>
+        <div style={{ overflow: 'hidden' }}>
+          <p style={{ marginTop: isOpen ? '1.5rem' : '0', transition: 'margin 0.4s ease' }}>{answer}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ConsultationView({ setView, artist }) {
   const [step, setStep] = useState(1);
 
@@ -109,18 +126,19 @@ function ConsultationView({ setView, artist }) {
           </div>
           <div className="faq-side">
             <h2 className="display-title">First <i>time?</i></h2>
-            <details open>
-              <summary>Does it hurt?</summary>
-              <p>It feels like a gentle scratching sensation. Our {artist === 'Mia' ? 'fine line' : 'traditional'} approach is designed to be as comfortable and minimally invasive as possible.</p>
-            </details>
-            <details>
-              <summary>How do I choose a design?</summary>
-              <p>We collaborate with you in our serene studio to sketch the perfect, organic piece with {artist}.</p>
-            </details>
-            <details>
-              <summary>What is the healing process?</summary>
-              <p>About 2 weeks. We provide vegan, botanical aftercare cream and thorough instructions.</p>
-            </details>
+            <FAQItem 
+              question="Does it hurt?" 
+              answer={`It feels like a gentle scratching sensation. Our ${artist === 'Mia' ? 'fine line' : 'traditional'} approach is designed to be as comfortable and minimally invasive as possible.`}
+              defaultOpen={true}
+            />
+            <FAQItem 
+              question="How do I choose a design?" 
+              answer={`We collaborate with you in our serene studio to sketch the perfect, organic piece with ${artist}.`}
+            />
+            <FAQItem 
+              question="What is the healing process?" 
+              answer="About 2 weeks. We provide vegan, botanical aftercare cream and thorough instructions."
+            />
             
             <div style={{ marginTop: '3rem' }}>
               <button className="btn-primary" onClick={() => setStep(2)}>Book {artist}'s Next Available Consultation</button>

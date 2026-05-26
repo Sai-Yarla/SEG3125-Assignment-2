@@ -298,24 +298,26 @@ button {
   background-color: var(--border-stone);
 }
 
-.faq-side details {
+.faq-item {
   background-color: transparent;
   padding: 1.5rem 0;
   border-bottom: 1px solid var(--border-stone);
+  cursor: pointer;
 }
-.faq-side details summary {
+.faq-summary {
   font-family: var(--font-heading);
   font-size: 1.5rem;
-  cursor: pointer;
   color: var(--text-main);
-  list-style: none; /* Hide default arrow to be cleaner */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.faq-side details p {
-  margin-top: 1.5rem;
+.faq-content p {
   color: var(--text-main);
   opacity: 0.75;
   line-height: 1.8;
   font-size: 1.05rem;
+  margin-bottom: 0;
 }
 
 /* Forms & Inputs */
