@@ -1,6 +1,23 @@
 import React, { useState } from 'react';
 import './App.css';
 
+// Image imports
+import jaxProfile from '../images/jax_profile_image.webp';
+import miaProfile from '../images/mia_profile_image.webp';
+
+import jaxPort1 from '../images/jax_portfolio1.jpg';
+import jaxPort2 from '../images/jax_portfolio2.jpg';
+import jaxPort3 from '../images/jax_portfolio3.webp';
+import jaxPort4 from '../images/jax_portfolio4.jpg';
+
+import miaPort1 from '../images/mia_portfolio1.jpeg';
+import miaPort2 from '../images/mia_portfolio2.webp';
+import miaPort3 from '../images/mia_portfolio3.webp';
+import miaPort4 from '../images/mia_portfolio4.jpg';
+
+import studio1 from '../images/studio_image1.webp';
+import studio2 from '../images/studio_image2.webp';
+
 function App() {
   const [view, setView] = useState('HOME');
   const [artist, setArtist] = useState('Mia');
@@ -68,7 +85,7 @@ function HomeView({ setView, setArtist }) {
         <h3 className="section-title">Our Artists</h3>
         <div className="artists-grid">
           <div className="artist-card">
-            <div className="artist-placeholder img-placeholder-1"></div>
+            <div className="artist-placeholder" style={{ backgroundImage: `url(${miaProfile})` }}></div>
             <h4>Mia</h4>
             <p>Fine-Line & Floral • Newcomer Specialist</p>
             <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
@@ -77,7 +94,7 @@ function HomeView({ setView, setArtist }) {
             </div>
           </div>
           <div className="artist-card">
-            <div className="artist-placeholder img-placeholder-2"></div>
+            <div className="artist-placeholder" style={{ backgroundImage: `url(${jaxProfile})` }}></div>
             <h4>Jax</h4>
             <p>Traditional & Sleeves • Routine Users & Large Designs</p>
             <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
@@ -141,10 +158,10 @@ function ConsultationView({ setView, artist }) {
           <div className="portfolio-side">
             <h2 className="display-title">{artist}'s <i>Portfolio</i></h2>
             <div className="masonry-grid">
-              <div className="masonry-item"></div>
-              <div className="masonry-item"></div>
-              <div className="masonry-item"></div>
-              <div className="masonry-item"></div>
+              <div className="masonry-item" style={{ backgroundImage: `url(${artist === 'Mia' ? miaPort1 : jaxPort1})` }}></div>
+              <div className="masonry-item" style={{ backgroundImage: `url(${artist === 'Mia' ? miaPort2 : jaxPort2})` }}></div>
+              <div className="masonry-item" style={{ backgroundImage: `url(${artist === 'Mia' ? miaPort3 : jaxPort3})` }}></div>
+              <div className="masonry-item" style={{ backgroundImage: `url(${artist === 'Mia' ? miaPort4 : jaxPort4})` }}></div>
             </div>
           </div>
           <div className="faq-side">
@@ -371,8 +388,8 @@ function StudioView({ setView }) {
         Our space is designed to be a serene and welcoming environment, inspired by nature and tranquility, giving you a relaxing space to experience permanent art.
       </p>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginTop: '2.5rem' }}>
-        <div style={{ height: '300px', backgroundColor: 'var(--surface-clay)', borderRadius: '8px' }}></div>
-        <div style={{ height: '300px', backgroundColor: 'var(--surface-light-clay)', borderRadius: '8px' }}></div>
+        <div style={{ height: '300px', backgroundColor: 'var(--surface-clay)', borderRadius: '8px', backgroundImage: `url(${studio1})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
+        <div style={{ height: '300px', backgroundColor: 'var(--surface-light-clay)', borderRadius: '8px', backgroundImage: `url(${studio2})`, backgroundSize: 'cover', backgroundPosition: 'center' }}></div>
       </div>
       <div style={{ clear: 'both', textAlign: 'center', marginTop: '3rem' }}>
         <button className="btn-secondary" onClick={() => setView('CONSULTATION')}>Book a Studio Tour or Consultation</button>
